@@ -1,0 +1,6 @@
+{
+    getPing {
+        ping
+    }
+
+}

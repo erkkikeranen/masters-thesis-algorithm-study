@@ -1,0 +1,25 @@
+{
+    searchSimilarGraphs(
+        knowledgeGraph: 3,
+        similarityTreshold: 1.0,
+        queryGraph: 4,
+        queryFocusLabel: "person") {
+        name,
+        score
+        nodes {
+            id,
+            label,
+            properties {
+                key,
+                value
+                weight
+            }
+        }
+        edges {
+            source,
+            target,
+            label
+        }
+
+    }
+}

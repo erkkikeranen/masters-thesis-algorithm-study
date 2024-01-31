@@ -1,0 +1,71 @@
+
+type PingStatus {
+    ping: Boolean
+}
+
+type NodeEdge {
+    graphId: Int,
+    graphName: String,
+    id: String,
+    queryGraph: Boolean,
+    relationship: String,
+    source: String,
+    sourceId: Int,
+    target: String,
+    targetId: Int
+}
+
+type Graph {
+    score: Float,
+    nodeEdges: [NodeEdge],
+}
+
+type Node {
+    id: Int,
+    label: String,
+    edges: [Edge],
+    properties: [Property]
+}
+
+type Edge {
+    source: Int,
+    target: Int,
+    label: String
+    properties: [Property]
+}
+
+type Property {
+    key: String,
+    value: String,
+    weight: Float
+}
+
+type MatchGraph {
+    similarity: Float,
+    name: String,
+    nodes: [Node]
+    edges: [Edge]
+}
+
+type GraphRow {
+    id: Int,
+    name: String,
+    queryGraph: Boolean
+}
+type Query {
+    getPing: PingStatus
+
+    nodeEdges: [NodeEdge]
+
+    """
+    PINGS similarityMeasure : find similar graphs
+    """
+    similarityMeasure(knowledgeGraph: Int!, similarityTreshold: Float!, queryGraph: Int!, queryFocusLabel: String!): [MatchGraph]
+
+    """
+    PINGS neighborhoodSimilarity : find neighborhoods that have common denominators
+    """
+    neighborhoodSimilarity(knowledgeGraph: Int!, similarityTreshold: Float!, queryGraph: Int!, queryFocusLabel: String!): [MatchGraph]
+
+    graphs(isQueryGraph: Boolean!): [GraphRow]
+}
